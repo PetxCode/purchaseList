@@ -101,46 +101,46 @@ const createUser = async (req, res) => {
 
 		//sending the Email
 
-		// const mailOptions = {
-		// 	from: "ajmarketplace52@gmail.com",
+		const mailOptions = {
+			from: "no-replay@gmail.com",
+			to: email,
+			subject: "Account verification",
+			html: `
+		    <h3>
+		    Thanks for sign up with us ${user.fullName}, Please use the <a
+		    href="https://class-buy-list.web.app/auth/${user._id}/${myToken}"
+		    >Link to complete your sign up</a>
+		    </h3>
+		    `,
+		};
+
+		transport.sendMail(mailOptions, (err, info) => {
+			if (err) {
+				console.log(err.message);
+			} else {
+				console.log("Email has been sent to your inbox", info.response);
+			}
+		});
+
+		// const data = {
+		// 	from: "no-reply@gmail.com",
 		// 	to: email,
 		// 	subject: "Account verification",
 		// 	html: `
 		//     <h3>
 		//     Thanks for sign up with us ${user.fullName}, Please use the <a
-		//     href="https://class-buy-list.web.app/auth/${user._id}/${myToken}"
+		//     href="${process.env.LOCAL_URL}/auth/${user._id}/${myToken}"
 		//     >Link to complete your sign up</a>
 		//     </h3>
 		//     `,
 		// };
-
-		// transport.sendMail(mailOptions, (err, info) => {
+		// mg.messages().send(data, (err, body) => {
 		// 	if (err) {
 		// 		console.log(err.message);
 		// 	} else {
-		// 		console.log("Email has been sent to your inbox", info.response);
+		// 		console.log("email has been sent", body);
 		// 	}
 		// });
-
-		const data = {
-			from: "no-reply@gmail.com",
-			to: email,
-			subject: "Account verification",
-			html: `
-            <h3>
-            Thanks for sign up with us ${user.fullName}, Please use the <a
-            href="${process.env.LOCAL_URL}/auth/${user._id}/${myToken}"
-            >Link to complete your sign up</a>
-            </h3>
-            `,
-		};
-		mg.messages().send(data, (err, body) => {
-			if (err) {
-				console.log(err.message);
-			} else {
-				console.log("email has been sent", body);
-			}
-		});
 
 		res.status(201).json({
 			message: "Check your inbox to continue...!",
@@ -226,46 +226,46 @@ const createAdmin = async (req, res) => {
 			_id: user._id,
 		});
 
-		// const mailOptions = {
-		// 	from: "ajmarketplace52@gmail.com",
+		const mailOptions = {
+			from: "no-replay@gmail.com",
+			to: email,
+			subject: "Account verification",
+			html: `
+		    <h3>
+		    Thanks for sign up with us ${user.fullName}, Please use the <a
+		    href="https://class-buy-list.web.app/auth/admin/${user._id}/${myToken}"
+		    >Link to complete your sign up use your secret key to complete this sign up: </a><h2><strong>${adminToken}</strong></h2>
+		    </h3>
+		    `,
+		};
+
+		transport.sendMail(mailOptions, (err, info) => {
+			if (err) {
+				console.log(err.message);
+			} else {
+				console.log("Email has been sent to your inbox", info.response);
+			}
+		});
+
+		// const data = {
+		// 	from: "no-reply@gmail.com",
 		// 	to: email,
 		// 	subject: "Account verification",
 		// 	html: `
 		//     <h3>
 		//     Thanks for sign up with us ${user.fullName}, Please use the <a
-		//     href="https://class-buy-list.web.app/auth/admin/${user._id}/${myToken}"
+		//     href="${process.env.LOCAL_URL}/auth/admin/${user._id}/${myToken}"
 		//     >Link to complete your sign up use your secret key to complete this sign up: </a><h2><strong>${adminToken}</strong></h2>
 		//     </h3>
 		//     `,
 		// };
-
-		// transport.sendMail(mailOptions, (err, info) => {
+		// mg.messages().send(data, (err, body) => {
 		// 	if (err) {
 		// 		console.log(err.message);
 		// 	} else {
-		// 		console.log("Email has been sent to your inbox", info.response);
+		// 		console.log("email has been sent", body);
 		// 	}
 		// });
-
-		const data = {
-			from: "no-reply@gmail.com",
-			to: email,
-			subject: "Account verification",
-			html: `
-            <h3>
-            Thanks for sign up with us ${user.fullName}, Please use the <a
-            href="${process.env.LOCAL_URL}/auth/admin/${user._id}/${myToken}"
-            >Link to complete your sign up use your secret key to complete this sign up: </a><h2><strong>${adminToken}</strong></h2> 
-            </h3>
-            `,
-		};
-		mg.messages().send(data, (err, body) => {
-			if (err) {
-				console.log(err.message);
-			} else {
-				console.log("email has been sent", body);
-			}
-		});
 
 		res.status(201).json({
 			message: "Check your inbox to continue...!",
@@ -358,46 +358,46 @@ const signinUser = async (req, res) => {
 							expiresIn: process.env.EXPIRES,
 						});
 
-						// 			const mailOptions = {
-						// 				from: "ajmarketplace52@gmail.com",
-						// 				to: email,
-						// 				subject: "Account verification",
-						// 				html: `
-						// <h3>
-						// Thanks for sign up with us ${user.fullName}, Please use the <a
-						// href="https://class-buy-list.web.app/auth/admin/${user._id}/${myToken}"
-						// >Link to complete your sign up use your secret key to complete this sign up: </a><h2><strong>${adminToken}</strong></h2>
-						// </h3>
-						// `,
-						// 			};
-
-						// 			transport.sendMail(mailOptions, (err, info) => {
-						// 				if (err) {
-						// 					console.log(err.message);
-						// 				} else {
-						// 					console.log("Email has been sent to your inbox", info.response);
-						// 				}
-						// 			});
-
-						const data = {
-							from: "no-reply@gmail.com",
+						const mailOptions = {
+							from: "no-replay@gmail.com",
 							to: email,
 							subject: "Account verification",
 							html: `
-								<h3>
-								Thanks for sign up with us ${user.fullName}, Please use the <a
-								href="${process.env.LOCAL_URL}/auth/admin/${user._id}/${myToken}"
-								>Link to complete your sign up use your secret key to complete this sign up: </a><h2><strong>${adminToken}</strong></h2> 
-								</h3>
-								`,
+						<h3>
+						Thanks for sign up with us ${user.fullName}, Please use the <a
+						href="https://class-buy-list.web.app/auth/admin/${user._id}/${myToken}"
+						>Link to complete your sign up use your secret key to complete this sign up: </a><h2><strong>${adminToken}</strong></h2>
+						</h3>
+						`,
 						};
-						mg.messages().send(data, (err, body) => {
+
+						transport.sendMail(mailOptions, (err, info) => {
 							if (err) {
 								console.log(err.message);
 							} else {
-								console.log("email has been sent", body);
+								console.log("Email has been sent to your inbox", info.response);
 							}
 						});
+
+						// const data = {
+						// 	from: "no-reply@gmail.com",
+						// 	to: email,
+						// 	subject: "Account verification",
+						// 	html: `
+						// 		<h3>
+						// 		Thanks for sign up with us ${user.fullName}, Please use the <a
+						// 		href="${process.env.LOCAL_URL}/auth/admin/${user._id}/${myToken}"
+						// 		>Link to complete your sign up use your secret key to complete this sign up: </a><h2><strong>${adminToken}</strong></h2>
+						// 		</h3>
+						// 		`,
+						// };
+						// mg.messages().send(data, (err, body) => {
+						// 	if (err) {
+						// 		console.log(err.message);
+						// 	} else {
+						// 		console.log("email has been sent", body);
+						// 	}
+						// });
 
 						res.status(201).json({
 							message: "Check your inbox to continue...!",
@@ -408,46 +408,46 @@ const signinUser = async (req, res) => {
 							expiresIn: process.env.EXPIRES,
 						});
 
-						// 			const mailOptions = {
-						// 				from: "ajmarketplace52@gmail.com",
+						const mailOptions = {
+							from: "no-replay@gmail.com",
+							to: email,
+							subject: "re-verification of your Account ",
+							html: `
+						<h3>
+						Thanks for sign up with us ${user.fullName}, Please use the <a
+						href="https://class-buy-list.web.app/auth/${user._id}/${myToken}"
+						>Link to complete your sign up</a> for re-verification of your account
+						</h3>
+						`,
+						};
+
+						transport.sendMail(mailOptions, (err, info) => {
+							if (err) {
+								console.log(err.message);
+							} else {
+								console.log("Email has been sent to your inbox", info.response);
+							}
+						});
+
+						// 			const data = {
+						// 				from: "no-reply@gmail.com",
 						// 				to: email,
 						// 				subject: "re-verification of your Account ",
 						// 				html: `
 						// <h3>
 						// Thanks for sign up with us ${user.fullName}, Please use the <a
-						// href="https://class-buy-list.web.app/auth/${user._id}/${myToken}"
+						// href="${process.env.LOCAL_URL}/auth/${user._id}/${myToken}"
 						// >Link to complete your sign up</a> for re-verification of your account
 						// </h3>
 						// `,
 						// 			};
-
-						// 			transport.sendMail(mailOptions, (err, info) => {
+						// 			mg.messages().send(data, (err, body) => {
 						// 				if (err) {
 						// 					console.log(err.message);
 						// 				} else {
-						// 					console.log("Email has been sent to your inbox", info.response);
+						// 					console.log("email has been sent", body);
 						// 				}
 						// 			});
-
-						const data = {
-							from: "no-reply@gmail.com",
-							to: email,
-							subject: "re-verification of your Account ",
-							html: `
-            <h3>
-            Thanks for sign up with us ${user.fullName}, Please use the <a
-            href="${process.env.LOCAL_URL}/auth/${user._id}/${myToken}"
-            >Link to complete your sign up</a> for re-verification of your account
-            </h3>
-            `,
-						};
-						mg.messages().send(data, (err, body) => {
-							if (err) {
-								console.log(err.message);
-							} else {
-								console.log("email has been sent", body);
-							}
-						});
 
 						res.status(201).json({
 							message: "Check your inbox to continue...!",
@@ -492,46 +492,46 @@ const forgetPassword = async (req, res) => {
 					{ new: true }
 				);
 
-				// 	const mailOptions = {
-				// 		from: "ajmarketplace52@gmail.com",
+				const mailOptions = {
+					from: "no-replay@gmail.com",
+					to: email,
+					subject: "Reset Password",
+					html: `
+				<h3>
+				You requested for password reset ${user.fullName}, Please use the <a
+				href="https://class-buy-list.web.app/reset/${user._id}/${myToken}"
+				>Link to complete your sign up use your secret key to complete this sign up: </a><h2></h2>
+				</h3>
+				`,
+				};
+
+				transport.sendMail(mailOptions, (err, info) => {
+					if (err) {
+						console.log(err.message);
+					} else {
+						console.log("Email has been sent to your inbox", info.response);
+					}
+				});
+
+				// 	const data = {
+				// 		from: "no-reply@gmail.com",
 				// 		to: email,
 				// 		subject: "Reset Password",
 				// 		html: `
 				// <h3>
 				// You requested for password reset ${user.fullName}, Please use the <a
-				// href="https://class-buy-list.web.app/reset/${user._id}/${myToken}"
+				// href="${process.env.LOCAL_URL}/reset/${user._id}/${myToken}"
 				// >Link to complete your sign up use your secret key to complete this sign up: </a><h2></h2>
 				// </h3>
 				// `,
 				// 	};
-
-				// 	transport.sendMail(mailOptions, (err, info) => {
+				// 	mg.messages().send(data, (err, body) => {
 				// 		if (err) {
 				// 			console.log(err.message);
 				// 		} else {
-				// 			console.log("Email has been sent to your inbox", info.response);
+				// 			console.log("email has been sent", body);
 				// 		}
 				// 	});
-
-				const data = {
-					from: "no-reply@gmail.com",
-					to: email,
-					subject: "Reset Password",
-					html: `
-            <h3>
-            You requested for password reset ${user.fullName}, Please use the <a
-            href="${process.env.LOCAL_URL}/reset/${user._id}/${myToken}"
-            >Link to complete your sign up use your secret key to complete this sign up: </a><h2></h2> 
-            </h3>
-            `,
-				};
-				mg.messages().send(data, (err, body) => {
-					if (err) {
-						console.log(err.message);
-					} else {
-						console.log("email has been sent", body);
-					}
-				});
 
 				res.status(201).json({
 					message: "Check your inbox to continue...!",
